@@ -9,7 +9,7 @@ body {
 }
 
 .navbar {
-    background-color: rgb(121, 121, 121);
+    background-color: rgb(193, 188, 188);
     display: flex;
     justify-content: space-between;
     padding: 15px 50px;
@@ -47,8 +47,7 @@ body {
 
 /* --- Header Style --- */
 .hero {
-    /* You can add a background image here later like: url('assets/campus_bg.jpg'); */
-    background-color: #34495e; 
+    background-color: #617b96; 
     color: white;
     text-align: center;
     padding: 100px 20px;
@@ -60,7 +59,7 @@ body {
 }
 
 .cta-button {
-    background-color: #f39c12;
+    background-color: #f33b12;
     color: white;
     padding: 15px 30px;
     text-decoration: none;

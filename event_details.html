@@ -1,0 +1,63 @@
+<!-- Ng Kee Hang -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Details</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo"><a href="index.html"><img src="assets/MMU_LOGO.png" alt="MMU Logo"></a></div>
+        <ul class="nav-links">
+             <li><a href="events.html">Back to Events</a></li> 
+        </ul>
+    </nav>
+
+    <section class="about-project" style="text-align: left; max-width: 800px; margin: 0 auto;">
+        
+        <img id="detail-image" src="" alt="Event Image" style="width:100%; max-height:400px; object-fit:cover; border-radius:10px; margin-bottom:20px;">
+        
+        <h1 id="detail-title">Loading event...</h1>
+        
+        <p><strong>Date:</strong> <span id="detail-date"></span></p>
+        <p><strong>Location:</strong> <span id="detail-location"></span></p>
+        
+        <hr style="margin: 20px 0;">
+        
+        <div id="detail-description"></div>
+
+    </section>
+
+    <footer>
+        <p>&copy; 2026 MMU Campus Event Management System.</p>
+    </footer>
+
+    <script src="data.js"></script> <script>
+        function getEventIdFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('id');
+        }
+
+        function loadEventDetails() {
+            const eventId = getEventIdFromUrl();
+            
+            const event = eventsData.find(e => e.id === eventId);
+
+            if (event) {
+                document.getElementById('detail-image').src = event.image;
+                document.getElementById('detail-title').innerText = event.title;
+                document.getElementById('detail-date').innerText = event.date;
+                document.getElementById('detail-location').innerText = event.location;
+                document.getElementById('detail-description').innerHTML = event.fullDetails || event.description;
+            } else {
+                document.querySelector('.about-project').innerHTML = "<h1>Event not found!</h1><a href='events.html'>Go Back</a>";
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadEventDetails);
+    </script>
+
+</body>
+</html>

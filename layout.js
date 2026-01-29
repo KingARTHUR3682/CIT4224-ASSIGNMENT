@@ -8,7 +8,7 @@ const navbarContent = `
       <li><a href="events.html">Browse Events</a></li>
       <li><a href="about.html">About Us</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="index.html" class="btn-login">Logout</a></li>
+      <li><a href="profile.html" class="btn-login">Profile</a></li>
     </ul>
   </nav>
 `;

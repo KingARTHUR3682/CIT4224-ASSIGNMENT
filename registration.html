@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Event Registration</title>
+    <title>MMU Campus Events</title>
     <link rel="stylesheet" href="style.css">
     <style>
         /* Specific styles for registration form */
@@ -124,13 +124,6 @@
             <button type="button" class="btn-add-member" onclick="addMemberField()">+ Add Member</button>
         </div>
 
-        <h3 style="margin-top: 30px;">Payment</h3>
-        <div class="form-group">
-            <label for="paymentProof">Upload Proof of Payment</label>
-            <input type="file" id="paymentProof" name="paymentProof" accept="image/*,application/pdf" required>
-            <p style="font-size: 0.85rem; color: #666; margin-top: 5px;">Accepted formats: PNG, JPG, PDF.</p>
-        </div>
-
         <div class="form-group">
             <label for="remarks">Additional Remarks (Optional)</label>
             <textarea id="remarks" name="remarks" rows="3" placeholder="Dietary requirements, special requests, etc."></textarea>
@@ -207,20 +200,33 @@
     }
 
     // 4. Handle Form Submission
-    function handleRegistration(event) {
-        event.preventDefault(); // Prevents the page from reloading immediately
-        
-        const eventName = document.getElementById('event-name-display').innerText;
-        const name = document.getElementById('name').value;
-        
-        // Simple success message
-        alert(`Success! \n\nRegistration for "${eventName}" received.\nName: ${name}\n\nWe will review your payment proof and email you shortly.`);
-        
-        // Redirect
-        window.location.href = 'events.html';
-        
-        return false; // Good practice to return false
+function handleRegistration(event) {
+    event.preventDefault(); 
+    const eventName = document.getElementById('event-name-display').innerText;
+    const eventId = document.getElementById('eventId').value || 'unknown-id'; 
+    const studentName = document.getElementById('name').value;
+    const newBooking = {
+        id: eventId,
+        title: eventName,
+        date: new Date().toLocaleDateString(),
+        status: "Pending Payment Verification"
+    };
+
+    const userJson = localStorage.getItem('currentUser');
+    let userId = 'guest';
+    if (userJson) {
+        userId = JSON.parse(userJson).id;
     }
+    const storageKey = `bookings_${userId}`;
+    const currentBookings = JSON.parse(localStorage.getItem(storageKey)) || [];
+    
+    currentBookings.push(newBooking);
+    localStorage.setItem(storageKey, JSON.stringify(currentBookings));
+    alert(`Success! \n\nRegistration for "${eventName}" received.\nName: ${studentName}\n\nCheck your "My Bookings" page for status.`);
+    window.location.href = 'bookings.html'; 
+    
+    return false;
+}
 </script>
 
 </body>

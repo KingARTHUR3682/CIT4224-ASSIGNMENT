@@ -8,12 +8,22 @@ const eventsData = [
         description: "Win Up to USD 10,000! optimizing clean water supply...",
         image: "assets/EY.png",
         fullDetails: `  <p><strong>MMU students, don't miss this exciting opportunity!</strong></p>
-                        <p>In addition to the chance to win global cash prizes, Cadet points will be awarded to eligible participants.</p>
-                        <ul>
-                            <li>Open to students from any faculty and any year of study</li>
-                            <li>Gain hands-on experience, showcase your Al & data skills, and strengthen your portfolio </li>
-                            <li><b>Join now!</b> More details can be found in the poster attached for your reference.</li>
+    
+                        <p>In addition to the chance to win <strong>global cash prizes</strong>, <strong>Cadet points</strong> will be awarded to eligible participants.</p>
+    
+                        <ul style="margin-bottom: 15px; padding-left: 20px;">
+                            <li>Open to students from <strong>any faculty and any year of study</strong></li>
+                            <li>Gain hands-on experience and showcase your AI & data skills</li>
                         </ul>
+
+                        <h3>How to Participate:</h3>
+                            <ol style="padding-left: 20px; margin-bottom: 20px;">
+                                <li><strong>Join the Challenge:</strong> Visit <a href="https://challenge.ey.com" target="_blank">challenge.ey.com</a> to register.</li>
+                                <li><strong>Claim Cadet Points:</strong> Scan the QR code provided in the poster after submission.</li>
+                                <li><strong>Wait for Results:</strong> Winners will be announced in April 2026.</li>
+                            </ol>
+
+                        <p style="font-size: 0.9em; color: gray;"><em>Source: Faculty of Info Science & Tech (23 Jan 2026)</em></p>
                     `
     },
     {
@@ -23,21 +33,41 @@ const eventsData = [
         location: "Dewan Tun Canselor, MMU Cyberjaya",
         description: "Assalamualaikum semua n salam sejatera...",
         image: "assets/KONSERT.jpeg",
-        fullDetails: `  <p>Assalamualaikum semua n salam sejahtera, dengan rasa penuh ta'zimnya kami dari Intisor Media Network bersama bbrp rakan strategik akan membawakan Konsert #Heart4Muhammad pada ketetapan berikut:-</p>
-            
-                        <p><strong>Tarikh:</strong> 9 Mei 2026 Sabtu</p>
-                        <p><strong>Venue:</strong> Multimedia University Cyberjaya</p>
-                        <p><strong>Masa:</strong> 8.00 mlm</p>
+        fullDetails: `  <p>Assalamualaikum semua n salam sejahtera. Kami akan membawakan Konsert #Heart4Muhammad pada ketetapan berikut:-</p>
+                        <p><strong>Tarikh:</strong> 9 Mei 2026 (Sabtu)<br>
+                        <strong>Venue:</strong> Dewan Tun Canselor, MMU Cyberjaya</p>
 
-                        <p><strong>Barisan Artis:</strong><br>
-                        Antara artis2 yg terlibat adalah kumpulan Intisor, kumpulan Cahaya Hati, Hasnul Diwani, kumpulan Rabithah, D.O, B-Heart dan Yaph.</p>
-            
-                        <p><strong>Dapatkan Tiket Anda:</strong><br>
-                        Tiket konsert telah mula dijual secara online, sila layari laman web hikmahzulhijjah.com atau imbas QR code yg tertera di poster utk mendapatkan tiket anda.</p>
-            
-                        <p>Harga tiket bermula dari <strong>RM69 hingga RM99 sahaja</strong>.</p>
-            
-                        <p><em>Ingat temujanji kita ye guyz?</em></p>`
+                        <h3>Senarai Harga Tiket (Ticket Prices)</h3>
+                            <table class="event-table">
+                                <thead>
+                                    <tr>
+                                        <th>Category (Taraf)</th>
+                                        <th>Price (Harga)</th>
+                                    </tr>
+                                </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Taraf 1 (Subhanallah)</td>
+                                <td>RM 99</td>
+                            </tr>
+                            <tr>
+                                <td>Taraf 2 (Taubat)</td>
+                                <td>RM 89</td>
+                            </tr>
+                            <tr>
+                                <td>Taraf 3 (Di Hening Malam)</td>
+                                <td>RM 79</td>
+                            </tr>
+                            <tr>
+                                <td>Taraf 4 (Solusi)</td>
+                                <td>RM 69</td>
+                            </tr>
+                        </tbody>
+                            </table>
+                        <br>
+                        <p><strong>Barisan Artis:</strong> Intisor, Cahaya Hati, Hasnul Diwani, Rabithah, D.O, B-Heart, Yaph.</p>
+                        <p>Dapatkan tiket anda sekarang sebelum terlambat!</p>`
     },
     {
         id: "jda-info",

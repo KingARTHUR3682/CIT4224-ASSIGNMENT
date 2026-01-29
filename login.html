@@ -220,7 +220,12 @@
 
               alert("Login Successful! Welcome, " + validUser.name);
               
-              window.location.href = "main.html"; 
+              if (role === 'admin') {
+                  window.location.href = "admin_dashboard.html"; 
+              } else {
+                  window.location.href = "main.html"; 
+              }
+
           } else {
               alert("Invalid ID or Password. Please try again.\n\n(Tip: Check auth_data.js for valid passwords)");
           }

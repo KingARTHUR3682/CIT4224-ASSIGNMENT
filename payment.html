@@ -123,25 +123,23 @@
         // Make payment
         function handlePayment(e) {
             e.preventDefault();
-            // 模拟付款处理延迟
             const btn = document.querySelector('.btn-submit');
             btn.innerHTML = "Processing...";
             btn.disabled = true;
 
             setTimeout(() => {
-                // *** 核心：更新状态 ***
+                // update status
                 if (bookingIndex !== -1) {
-                    // 修改状态为 Confirmed
                     userBookings[bookingIndex].status = "Confirmed ✅";
                     
-                    // 保存回 LocalStorage
+                    // Save to LocalStorage
                     const storageKey = `bookings_${currentUser.id}`;
                     localStorage.setItem(storageKey, JSON.stringify(userBookings));
 
                     alert("Payment Successful! Your registration is confirmed.");
-                    window.location.href = "bookings.html"; // 跳回列表页
+                    window.location.href = "bookings.html"; // back to booking page
                 }
-            }, 1500); // 1.5秒延迟模拟真实感
+            }, 1500);
         }
     </script>
 </body>

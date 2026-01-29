@@ -1,3 +1,4 @@
+// Arthur Kong Ben Xuan
 // Navigation Bar
 const navbarContent = `
   <nav class="navbar">

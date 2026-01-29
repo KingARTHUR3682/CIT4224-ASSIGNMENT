@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FAQ - MMU Campus Events</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* FAQ css style */
+        .faq-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            min-height: 60vh;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .faq-header h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .faq-category {
+            margin-bottom: 30px;
+        }
+
+        .faq-category h3 {
+            color: #3498db;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .faq-question {
+            background-color: #fff;
+            padding: 20px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #2c3e50;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: #f9f9f9;
+        }
+
+        .faq-question::after {
+            content: '+'; 
+            font-size: 1.5rem;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .faq-question.active::after {
+            content: '-';
+            color: #e74c3c;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            background-color: #fdfdfd;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            color: #555;
+            line-height: 1.6;
+            border-top: 1px solid transparent;
+        }
+
+        .faq-question.active + .faq-answer {
+            padding: 20px;
+            max-height: 300px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="navbar-container"></div>
+
+    <section class="faq-container">
+        
+        <div class="faq-header">
+            <h1>Frequently Asked Questions</h1>
+            <p>Find answers to common questions about MMU Campus Events.</p>
+        </div>
+
+        <div class="faq-category">
+            <h3>📅 Event Registration</h3>
+            
+            <div class="faq-item">
+                <button class="faq-question">How do I register for an event?</button>
+                <div class="faq-answer">
+                    <p>Simply browse our <a href="events.html">Events Page</a>, click on the event you are interested in, and hit the "Register Now" button. You can choose between individual or group registration.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Can I register for multiple events?</button>
+                <div class="faq-answer">
+                    <p>Yes! There is no limit to the number of events you can join. Just make sure the event times do not clash.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question">How do I verify my attendance?</button>
+                <div class="faq-answer">
+                    <p>After your payment is confirmed, a <a href="bookings.html">digital ticket</a> with a QR code will be generated. Please show this ticket at the event entrance.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-category">
+            <h3>💳 Payments & Fees</h3>
+
+            <div class="faq-item">
+                <button class="faq-question">What payment methods are accepted?</button>
+                <div class="faq-answer">
+                    <p>We currently accept Credit/Debit cards (Visa & Mastercard). All transactions are simulated for this assignment prototype.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Can I get a refund if I cancel?</button>
+                <div class="faq-answer">
+                    <p>Refund policies vary by event. generally, cancellations made 3 days before the event are eligible for a 50% refund. Please contact support for assistance.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-category">
+            <h3>👤 Account & Support</h3>
+            <div class="faq-item">
+                <button class="faq-question">How do I contact the organizers?</button>
+                <div class="faq-answer">
+                    <p>You can reach out via our <a href="contact.html">Contact Us</a> page or email us directly at help@campusevents.mmu.edu.my.</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <div id="footer-container"></div>
+
+    <script src="layout.js"></script>
+    <script>
+        const questions = document.querySelectorAll('.faq-question');
+
+        questions.forEach(question => {
+            question.addEventListener('click', () => {
+                question.classList.toggle('active');
+                
+            });
+        });
+    </script>
+</body>
+</html>

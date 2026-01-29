@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard | MMU Events</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="admin_style.css"> 
+
+    <style>
+        
+        body {
+            display: flex;           
+            flex-direction: column;  
+            min-height: 100vh;   
+            background-color: #f4f4f4;  
+        }
+
+        .featured-events {
+            flex: 1; 
+        }
+
+        #footer-container {
+            margin-top: auto;        
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .admin-section {
+            padding: 50px 10%;
+            text-align: center;
+        }
+    </style>
+    
+</head>
+<body>
+
+    <div id="navbar-container"></div>
+
+    <header class="hero" style="background-color: #2c3e50; padding: 60px 20px;">
+        <div class="hero-content">
+            <h1>Admin Dashboard</h1>
+            <p>Welcome back. Here is the overview of the system.</p>
+        </div>
+    </header>
+
+    <section class="featured-events">
+        <h2>System Overview</h2>
+        
+        <div class="team-grid" style="margin-top: 30px;">
+            
+            <div class="team-card" style="width: 250px; border-top: 5px solid #3498db;">
+                <h3 style="margin: 0; color: #7f8c8d;">Active Events</h3>
+                <div id="count-events" class="stat-number" style="color: #3498db;">--</div>
+                <a href="admin_events.html" class="cta-button" style="padding: 5px 15px; font-size: 0.9rem; background-color: #3498db;">Manage</a>
+            </div>
+
+            <div class="team-card" style="width: 250px; border-top: 5px solid #e67e22;">
+                <h3 style="margin: 0; color: #7f8c8d;">Total Bookings</h3>
+                <div id="count-bookings" class="stat-number" style="color: #e67e22;">--</div>
+                <p style="font-size: 0.8rem; color: gray;">All student registrations</p>
+            </div>
+
+            <div class="team-card" style="width: 250px; border-top: 5px solid #27ae60;">
+                <h3 style="margin: 0; color: #7f8c8d;">Est. Revenue</h3>
+                <div id="count-revenue" class="stat-number" style="color: #27ae60;">RM 0</div>
+                <p style="font-size: 0.8rem; color: gray;">Based on confirmed payments</p>
+            </div>
+
+        </div>
+    </section>
+
+    <div id="footer-container"></div>
+
+    <script src="data.js"></script>
+    <script src="auth_data.js"></script>
+    <script src="admin_data.js"></script>
+    
+    <script src="admin_layout.js"></script>
+
+    <script>
+        // Populate Dashboard Numbers
+        document.addEventListener('DOMContentLoaded', () => {
+            // Wait briefly for admin_data.js to initialize
+            setTimeout(() => {
+                const events = getStoredEvents(); // Defined in admin_data.js
+                const bookings = getAllBookings(); // Defined in admin_data.js
+
+                document.getElementById('count-events').innerText = events.length;
+                document.getElementById('count-bookings').innerText = bookings.length;
+                
+                // Calculate Revenue (Confirmed bookings * RM 10)
+                const confirmedCount = bookings.filter(b => b.status && b.status.includes('Confirmed')).length;
+                const revenue = confirmedCount * 10;
+                document.getElementById('count-revenue').innerText = "RM " + revenue;
+            }, 100);
+        });
+    </script>
+
+</body>
+</html>

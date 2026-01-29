@@ -9,6 +9,7 @@ const navbarContent = `
       <li><a href="about.html">About Us</a></li>
       <li><a href="contact.html">Contact</a></li>
       <li><a href="bookings.html">Booking</a></li>
+      <li><a href="faq.html">FAQ</a></li>
       <li><a href="profile.html" class="btn-login">Profile</a></li>
     </ul>
   </nav>

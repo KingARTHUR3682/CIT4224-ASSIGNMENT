@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Write a Review</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .comment-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-weight: bold; margin-bottom: 8px; }
+        .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        .form-group select { padding: 10px; width: 100%; border-radius: 5px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+
+    <div id="navbar-container"></div>
+
+    <section class="comment-container">
+        <h2 style="text-align: center; color: #2c3e50;">Write a Review</h2>
+        <p style="text-align: center; margin-bottom: 30px;">For: <strong id="event-name-display">Loading...</strong></p>
+
+        <form onsubmit="return submitComment(event)">
+            
+            <div class="form-group">
+                <label>Rating</label>
+                <select id="rating" required>
+                    <option value="5">⭐⭐⭐⭐⭐ (Excellent)</option>
+                    <option value="4">⭐⭐⭐⭐ (Good)</option>
+                    <option value="3">⭐⭐⭐ (Average)</option>
+                    <option value="2">⭐⭐ (Poor)</option>
+                    <option value="1">⭐ (Terrible)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Your Comment</label>
+                <textarea id="comment-text" rows="5" placeholder="Share your experience..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">Submit Review</button>
+            
+            <button type="button" class="btn-submit" style="background-color: #95a5a6; margin-top: 10px;" onclick="goBack()">Cancel</button>
+        </form>
+    </section>
+
+    <div id="footer-container"></div>
+
+<script src="data.js"></script>
+<script src="comments.js"></script> <script src="layout.js"></script>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const eventId = params.get('id');
+    document.addEventListener('DOMContentLoaded', () => {
+        if(eventId && typeof eventsData !== 'undefined') {
+            const event = eventsData.find(e => e.id === eventId);
+            if (event) {
+                document.getElementById('event-name-display').innerText = event.title;
+            } else {
+                document.getElementById('event-name-display').innerText = "Event Not Found";
+            }
+        }
+    });
+    function goBack() {
+        if (eventId) {
+            window.location.href = `event_details.html?id=${eventId}`;
+        } else {
+            window.location.href = 'events.html';
+        }
+    }
+    function submitComment(e) {
+        e.preventDefault();
+        
+        if (!eventId) {
+            alert("Error: No event selected.");
+            return;
+        }
+
+        const rating = document.getElementById('rating').value;
+        const text = document.getElementById('comment-text').value;
+        let username = "Student";
+        const userJson = localStorage.getItem('currentUser');
+        if (userJson) {
+            username = JSON.parse(userJson).name;
+        }
+        saveCommentToStorage(eventId, rating, text, username);
+        
+        alert("Review Submitted!");
+        window.location.href = `event_details.html?id=${eventId}`;
+    }
+</script>
+</body>
+</html>

@@ -8,12 +8,7 @@
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="logo"><a href="main.html"><img src="assets/MMU_LOGO.png" alt="MMU Logo"></a></div>
-        <ul class="nav-links">
-             <li><a href="events.html">Back to Events</a></li> 
-        </ul>
-    </nav>
+  <div id="navbar-container"></div>
 
     <section class="about-project" style="text-align: left; max-width: 800px; margin: 0 auto;">
         
@@ -30,9 +25,7 @@
 
     </section>
 
-    <footer>
-        <p>&copy; 2026 MMU Campus Event Management System.</p>
-    </footer>
+    <div id="footer-container"></div>
 
     <script src="data.js"></script> <script>
         function getEventIdFromUrl() {
@@ -59,5 +52,6 @@
         document.addEventListener('DOMContentLoaded', loadEventDetails);
     </script>
 
+    <script src="layout.js"></script>
 </body>
 </html>

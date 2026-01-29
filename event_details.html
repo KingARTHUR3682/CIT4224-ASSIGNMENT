@@ -22,6 +22,9 @@
         <hr style="margin: 20px 0;">
         
         <div id="detail-description"></div>
+        <div style="text-align: center; margin-top: 60px; margin-bottom: 20px;">
+            <a href="#" id="register-btn" class="cta-button">Register Now</a>
+        </div>
 
     </section>
 
@@ -44,7 +47,13 @@
                 document.getElementById('detail-date').innerText = event.date;
                 document.getElementById('detail-location').innerText = event.location;
                 document.getElementById('detail-description').innerHTML = event.fullDetails || event.description;
-            } else {
+
+                const registerBtn = document.getElementById('register-btn');
+            if (registerBtn) {
+            registerBtn.href = `registration.html?id=${event.id}`;
+                }
+            } 
+            else {
                 document.querySelector('.about-project').innerHTML = "<h1>Event not found!</h1><a href='events.html'>Go Back</a>";
             }
         }

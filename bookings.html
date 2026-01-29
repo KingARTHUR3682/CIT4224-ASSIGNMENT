@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Bookings - MMU Campus Events</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="events.css"> </head>
+<body>
+
+    <div id="navbar-container"></div>
+
+    <section class="contact-header">
+        <h1>My Registered Events</h1>
+        <p>Track the status of your event applications.</p>
+    </section>
+
+    <section style="max-width: 800px; margin: 40px auto; padding: 20px; min-height: 400px;">
+        
+        <a href="profile.html" style="color: #3498db; text-decoration: none; font-weight: bold; margin-bottom: 20px; display: inline-block;">&larr; Back to Profile</a>
+
+        <div id="booking-list-container" class="event-list-container" style="max-height: none; padding: 0;">
+            <p style="text-align: center; color: gray; margin-top: 50px;">Loading records...</p>
+        </div>
+
+    </section>
+
+    <div id="footer-container"></div>
+
+    <script src="layout.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userJson = localStorage.getItem('currentUser');
+            if (!userJson) {
+                alert("Please login to view your bookings.");
+                window.location.href = "login.html";
+                return;
+            }
+
+            const user = JSON.parse(userJson);
+            loadBookings(user.id);
+        });
+
+        function loadBookings(userId) {
+            // Read data from LocalStorage
+            const storageKey = `bookings_${userId}`;
+            const bookings = JSON.parse(localStorage.getItem(storageKey)) || [];
+            const container = document.getElementById('booking-list-container');
+
+            container.innerHTML = '';
+
+            // if no data display No booking found
+            if (bookings.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 40px;">
+                        <h3>No bookings found.</h3>
+                        <p>You haven't registered for any events yet.</p>
+                        <a href="events.html" class="cta-button" style="display: inline-block; margin-top: 20px;">Browse Events</a>
+                    </div>
+                `;
+                return;
+            }
+
+            // The newest show on the top
+            bookings.reverse().forEach(booking => {
+                // Change color depend on status (Confirmed Green, Pending Orange)
+                let statusColor = '#f39c12'; // default orange
+                if (booking.status && booking.status.includes('Confirmed')) statusColor = '#27ae60';
+
+                const html = `
+                    <div class="event-list-item" style="border-left: 5px solid ${statusColor};">
+                        <div style="flex-grow: 1;">
+                            <span class="title" style="margin: 0; font-size: 1.1rem;">${booking.title}</span>
+                            <div style="font-size: 0.85rem; color: #7f8c8d; margin-top: 5px;">
+                                Registered on: <strong>${booking.date}</strong>
+                            </div>
+                        </div>
+                        <div style="text-align: right; min-width: 120px;">
+                            <span style="color: ${statusColor}; font-weight: bold; font-size: 0.9rem; display: block; margin-bottom: 5px;">
+                                ${booking.status}
+                            </span>
+                            <a href="event_details.html?id=${booking.id}" style="font-size: 0.8rem; padding: 5px 10px;">View Event</a>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', html);
+            });
+        }
+    </script>
+
+</body>
+</html>

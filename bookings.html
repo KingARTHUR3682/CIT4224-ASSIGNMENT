@@ -61,29 +61,44 @@
             }
 
             // The newest show on the top
-            bookings.reverse().forEach(booking => {
-                // Change color depend on status (Confirmed Green, Pending Orange)
-                let statusColor = '#f39c12'; // default orange
-                if (booking.status && booking.status.includes('Confirmed')) statusColor = '#27ae60';
+            bookings.reverse().forEach((booking, index) => {
+    
+    let statusColor = '#f39c12';
+    let actionButton = '';  
 
-                const html = `
-                    <div class="event-list-item" style="border-left: 5px solid ${statusColor};">
-                        <div style="flex-grow: 1;">
-                            <span class="title" style="margin: 0; font-size: 1.1rem;">${booking.title}</span>
-                            <div style="font-size: 0.85rem; color: #7f8c8d; margin-top: 5px;">
-                                Registered on: <strong>${booking.date}</strong>
-                            </div>
-                        </div>
-                        <div style="text-align: right; min-width: 120px;">
-                            <span style="color: ${statusColor}; font-weight: bold; font-size: 0.9rem; display: block; margin-bottom: 5px;">
-                                ${booking.status}
-                            </span>
-                            <a href="event_details.html?id=${booking.id}" style="font-size: 0.8rem; padding: 5px 10px;">View Event</a>
-                        </div>
-                    </div>
-                `;
-                container.insertAdjacentHTML('beforeend', html);
-            });
+    // Check Status if(Confirmed)
+    if (booking.status && booking.status.includes('Confirmed')) {
+        statusColor = '#27ae60'; // Show Green
+        // If payment done, show view event
+        actionButton = `<a href="event_details.html?id=${booking.id}" style="font-size: 0.8rem; padding: 5px 10px; color: #3498db; text-decoration: none;">View Event Details</a>`;
+    
+    } else { //pending payment, show pay
+        actionButton = `
+            <a href="payment.html?bookingId=${booking.id}" class="cta-button" 
+               style="font-size: 0.8rem; padding: 8px 15px; background-color: #e74c3c; display: inline-block; margin-top: 5px;">
+               Pay Now 💳
+            </a>
+        `;
+    }
+
+    const html = `
+        <div class="event-list-item" style="border-left: 5px solid ${statusColor};">
+            <div style="flex-grow: 1;">
+                <span class="title" style="margin: 0; font-size: 1.1rem;">${booking.title}</span>
+                <div style="font-size: 0.85rem; color: #7f8c8d; margin-top: 5px;">
+                    Registered on: <strong>${booking.date}</strong>
+                </div>
+            </div>
+            <div style="text-align: right; min-width: 140px;">
+                <span style="color: ${statusColor}; font-weight: bold; font-size: 0.9rem; display: block; margin-bottom: 5px;">
+                    ${booking.status}
+                </span>
+                ${actionButton}
+            </div>
+        </div>
+    `;
+    container.insertAdjacentHTML('beforeend', html);
+});
         }
     </script>
 

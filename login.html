@@ -1,9 +1,9 @@
-<!-- Arthur Kong Ben Xuan -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>MMU Campus Events</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - MMU Campus Events</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .login-wrapper {
@@ -141,7 +141,7 @@
           <form id="student-form" onsubmit="return handleLogin(event, 'student')">
               <div class="input-group">
                   <label for="studentId">Student ID</label>
-                  <input type="text" id="studentId" placeholder="e.g. 121110xxxx" required>
+                  <input type="text" id="studentId" placeholder="e.g. 242DC..." required>
               </div>
               <div class="input-group">
                   <label for="studentPass">Password</label>
@@ -153,7 +153,7 @@
           <form id="admin-form" class="hidden" onsubmit="return handleLogin(event, 'admin')">
               <div class="input-group">
                   <label for="adminId">Staff ID</label>
-                  <input type="text" id="adminId" placeholder="e.g. ST5050" required>
+                  <input type="text" id="adminId" placeholder="e.g. Admin..." required>
               </div>
               <div class="input-group">
                   <label for="adminPass">Password</label>
@@ -172,8 +172,11 @@
   <div id="footer-container"></div>
 
   <script src="layout.js"></script>
+  
+  <script src="auth_data.js"></script>
 
   <script>
+      // Tab Switching Function
       function switchTab(role) {
           const studentForm = document.getElementById('student-form');
           const adminForm = document.getElementById('admin-form');
@@ -192,14 +195,34 @@
           }
       }
 
+      // Main Login Logic
       function handleLogin(event, role) {
-          event.preventDefault(); 
+          event.preventDefault();
+
+          let inputId, inputPass, validUser;
+
           if (role === 'student') {
-              alert("Login Successful! Redirecting to Student Dashboard...");
+              inputId = document.getElementById('studentId').value;
+              inputPass = document.getElementById('studentPass').value;
+              
+              validUser = authDB.students.find(user => user.id === inputId && user.password === inputPass);
+
+          } else {
+              inputId = document.getElementById('adminId').value;
+              inputPass = document.getElementById('adminPass').value;
+
+              validUser = authDB.admins.find(user => user.id === inputId && user.password === inputPass);
+          }
+
+          if (validUser) {
+              localStorage.setItem('currentUser', JSON.stringify(validUser));
+              localStorage.setItem('userRole', role);
+
+              alert("Login Successful! Welcome, " + validUser.name);
+              
               window.location.href = "main.html"; 
           } else {
-              alert("Admin Access Granted. Redirecting to Management Console...");
-              window.location.href = "main.html"; 
+              alert("Invalid ID or Password. Please try again.\n\n(Tip: Check auth_data.js for valid passwords)");
           }
       }
   </script>

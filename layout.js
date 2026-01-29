@@ -7,7 +7,7 @@ const navbarContent = `
       <li><a href="events.html">Browse Events</a></li>
       <li><a href="about.html">About Us</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="login.html" class="btn-login">Login</a></li>
+      <li><a href="index.html" class="btn-login">Logout</a></li>
     </ul>
   </nav>
 `;

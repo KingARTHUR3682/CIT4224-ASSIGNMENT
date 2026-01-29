@@ -10,11 +10,9 @@
 <body>
 
   <div id="navbar-container"></div>
-
     <section class="about-project" style="text-align: left; max-width: 800px; margin: 0 auto;">
         
         <img id="detail-image" src="" alt="Event Image" style="width:100%; max-height:400px; object-fit:cover; border-radius:10px; margin-bottom:20px;">
-        
         <h1 id="detail-title">Loading event...</h1>
         
         <p><strong>Date:</strong> <span id="detail-date"></span></p>
@@ -26,42 +24,105 @@
         <div style="text-align: center; margin-top: 60px; margin-bottom: 20px;">
             <a href="#" id="register-btn" class="cta-button">Register Now</a>
         </div>
+        <hr style="margin: 40px 0;">
+
+        <section class="reviews-section" style="max-width: 800px; margin: 0 auto 50px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2>Student Reviews</h2>
+                <a href="#" id="write-review-btn" style="background: #34495e; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; font-size: 0.9rem;">Write a Review</a>
+            </div>
+
+            <div id="comments-list">
+                <p style="color: gray; font-style: italic;">Loading reviews...</p>
+            </div>
+        </section>
+
+        <hr style="margin: 40px 0;">
+        <script>
+            function loadEventDetails() {
+            const eventId = getEventIdFromUrl();
+            const event = eventsData.find(e => e.id === eventId);
+
+        if (event) {
+            document.getElementById('detail-image').src = event.image;
+            document.getElementById('detail-title').innerText = event.title;
+            
+            const registerBtn = document.getElementById('register-btn');
+            if (registerBtn) registerBtn.href = `registration.html?id=${event.id}`;
+
+            const reviewBtn = document.getElementById('write-review-btn');
+            if (reviewBtn) reviewBtn.href = `comment.html?id=${event.id}`;
+
+            loadComments(eventId);
+
+        } else {
+        }
+    }
+    function loadComments(eventId) {
+        const storageKey = `comments_${eventId}`;
+        const comments = JSON.parse(localStorage.getItem(storageKey)) || [];
+        const listContainer = document.getElementById('comments-list');
+
+        if (comments.length > 0) {
+            listContainer.innerHTML = '';
+            comments.reverse().forEach(c => {
+                const stars = '⭐'.repeat(c.rating);
+                
+                const commentDiv = document.createElement('div');
+                commentDiv.style.cssText = "background: #f9f9f9; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #3498db;";
+                
+                commentDiv.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <strong>${c.user}</strong>
+                        <span style="color: #666; font-size: 0.85rem;">${c.date}</span>
+                    </div>
+                    <div style="color: #f39c12; margin-bottom: 8px;">${stars}</div>
+                    <p style="margin: 0; color: #333;">${c.text}</p>
+                `;
+                listContainer.appendChild(commentDiv);
+            });
+        }
+    }
+            document.addEventListener('DOMContentLoaded', loadEventDetails);
+        </script>
+        
 
     </section>
 
     <div id="footer-container"></div>
 
-    <script src="data.js"></script> <script>
-        function getEventIdFromUrl() {
-            const params = new URLSearchParams(window.location.search);
-            return params.get('id');
+<script src="data.js"></script>
+<script src="comments.js"></script> <script>
+    function getEventIdFromUrl() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('id');
+    }
+
+    function loadEventDetails() {
+        const eventId = getEventIdFromUrl();
+        const event = eventsData.find(e => e.id === eventId);
+
+        if (event) {
+            document.getElementById('detail-image').src = event.image;
+            document.getElementById('detail-title').innerText = event.title;
+            document.getElementById('detail-date').innerText = event.date;
+            document.getElementById('detail-location').innerText = event.location;
+            document.getElementById('detail-description').innerHTML = event.fullDetails || event.description;
+
+            const registerBtn = document.getElementById('register-btn');
+            if (registerBtn) registerBtn.href = `registration.html?id=${event.id}`;
+            const reviewBtn = document.getElementById('write-review-btn');
+            if (reviewBtn) reviewBtn.href = `comment.html?id=${event.id}`;
+            renderComments(event.id, 'comments-list');
+
+        } else {
+            document.querySelector('.about-project').innerHTML = "<h1>Event not found!</h1><a href='events.html'>Go Back</a>";
         }
+    }
 
-        function loadEventDetails() {
-            const eventId = getEventIdFromUrl();
-            
-            const event = eventsData.find(e => e.id === eventId);
+    document.addEventListener('DOMContentLoaded', loadEventDetails);
+</script>
 
-            if (event) {
-                document.getElementById('detail-image').src = event.image;
-                document.getElementById('detail-title').innerText = event.title;
-                document.getElementById('detail-date').innerText = event.date;
-                document.getElementById('detail-location').innerText = event.location;
-                document.getElementById('detail-description').innerHTML = event.fullDetails || event.description;
-
-                const registerBtn = document.getElementById('register-btn');
-            if (registerBtn) {
-            registerBtn.href = `registration.html?id=${event.id}`;
-                }
-            } 
-            else {
-                document.querySelector('.about-project').innerHTML = "<h1>Event not found!</h1><a href='events.html'>Go Back</a>";
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', loadEventDetails);
-    </script>
-
-    <script src="layout.js"></script>
+<script src="layout.js"></script>
 </body>
 </html>

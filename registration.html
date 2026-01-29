@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Registration</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Specific styles for registration form */
+        .registration-container {
+            display: flex;
+            justify-content: center;
+            padding: 50px 10%;
+        }
+
+        .registration-form-wrapper {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .member-entry {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .btn-add-member {
+            background-color: #3498db;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .btn-add-member:hover {
+            background-color: #2980b9;
+        }
+
+        .remove-btn {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <div id="navbar-container"></div>
+
+  <header class="contact-header">
+    <h1>Event Registration</h1>
+    <p>Secure your spot for <span id="event-name-display" style="text-decoration: underline;">Loading Event...</span></p>
+  </header>
+
+  <section class="registration-container">
+    <div class="registration-form-wrapper">
+      <form onsubmit="return handleRegistration(event)">
+        
+        <input type="hidden" id="eventId" name="eventId">
+
+        <div class="form-group">
+          <label>Registration Type</label>
+          <div style="display: flex; gap: 20px;">
+            <label style="font-weight: normal; display: flex; align-items: center; cursor: pointer;">
+            <input type="radio" name="regType" value="individual" checked onchange="toggleGroupSection()" style="width: auto; margin-right: 10px;"> 
+            <b>Individual</b>
+          </label>
+          
+          <label style="font-weight: normal; display: flex; align-items: center; cursor: pointer;">
+            <input type="radio" name="regType" value="group" onchange="toggleGroupSection()" style="width: auto; margin-right: 10px;"> 
+            <b>Group</b>
+          </label>
+          </div>
+        </div>
+
+        <h3>Participant Details</h3>
+        <div class="form-group">
+          <label for="name">Full Name (Leader/Individual)</label>
+          <input type="text" id="name" name="name" placeholder="Enter full name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="studentId">Student ID</label>
+          <input type="text" id="studentId" name="studentId" placeholder="e.g. 121110xxxx" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="student@mmu.edu.my" required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="e.g. 012-3456789" required>
+        </div>
+
+        <div id="group-section" class="hidden">
+            <h3 style="margin-top: 30px;">Group Members</h3>
+            <p style="font-size: 0.9rem; color: gray; margin-bottom: 15px;">Please add details for other team members.</p>
+            
+            <div id="members-container">
+                </div>
+
+            <button type="button" class="btn-add-member" onclick="addMemberField()">+ Add Member</button>
+        </div>
+
+        <h3 style="margin-top: 30px;">Payment</h3>
+        <div class="form-group">
+            <label for="paymentProof">Upload Proof of Payment</label>
+            <input type="file" id="paymentProof" name="paymentProof" accept="image/*,application/pdf" required>
+            <p style="font-size: 0.85rem; color: #666; margin-top: 5px;">Accepted formats: PNG, JPG, PDF.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="remarks">Additional Remarks (Optional)</label>
+            <textarea id="remarks" name="remarks" rows="3" placeholder="Dietary requirements, special requests, etc."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">Submit Registration</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div id="footer-container"></div>
+
+  <script src="data.js"></script>
+  <script src="layout.js"></script>
+  
+  <script>
+    // 1. Load Event Name based on URL Parameter
+    document.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        const eventId = params.get('id');
+        
+        if(eventId && typeof eventsData !== 'undefined') {
+            const event = eventsData.find(e => e.id === eventId);
+            if (event) {
+                document.getElementById('event-name-display').innerText = event.title;
+                document.getElementById('eventId').value = eventId;
+            } else {
+                document.getElementById('event-name-display').innerText = "Event Not Found";
+            }
+        }
+    });
+
+    // 2. Toggle Group Section (FIXED)
+    function toggleGroupSection() {
+        const isGroup = document.querySelector('input[name="regType"][value="group"]').checked;
+        const groupSection = document.getElementById('group-section');
+        const container = document.getElementById('members-container');
+        
+        if (isGroup) {
+            groupSection.classList.remove('hidden');
+            // Add one member field automatically if empty
+            if (container.children.length === 0) {
+                addMemberField();
+            }
+        } else {
+            groupSection.classList.add('hidden');
+            // CRITICAL FIX: Clear the container when switching to Individual
+            // This removes the 'required' inputs so they don't block submission
+            container.innerHTML = ''; 
+        }
+    }
+
+    // 3. Add Member Field Dynamically
+    function addMemberField() {
+        const container = document.getElementById('members-container');
+        const memberIndex = container.children.length + 1;
+
+        const memberDiv = document.createElement('div');
+        memberDiv.className = 'member-entry';
+        memberDiv.innerHTML = `
+            <button type="button" class="remove-btn" onclick="this.parentElement.remove()">Remove</button>
+            <h4 style="margin-top:0;">Member ${memberIndex}</h4>
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" name="member_name[]" required style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+                <label>Student ID</label>
+                <input type="text" name="member_id[]" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+            </div>
+        `;
+        container.appendChild(memberDiv);
+    }
+
+    // 4. Handle Form Submission
+    function handleRegistration(event) {
+        event.preventDefault(); // Prevents the page from reloading immediately
+        
+        const eventName = document.getElementById('event-name-display').innerText;
+        const name = document.getElementById('name').value;
+        
+        // Simple success message
+        alert(`Success! \n\nRegistration for "${eventName}" received.\nName: ${name}\n\nWe will review your payment proof and email you shortly.`);
+        
+        // Redirect
+        window.location.href = 'events.html';
+        
+        return false; // Good practice to return false
+    }
+</script>
+
+</body>
+</html>

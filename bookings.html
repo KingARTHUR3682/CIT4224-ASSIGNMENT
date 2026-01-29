@@ -60,19 +60,21 @@
                 return;
             }
 
-            // The newest show on the top
             bookings.reverse().forEach((booking, index) => {
     
-    let statusColor = '#f39c12';
-    let actionButton = '';  
+            let statusColor = '#f39c12';
+            let actionButton = '';  
 
-    // Check Status if(Confirmed)
-    if (booking.status && booking.status.includes('Confirmed')) {
-        statusColor = '#27ae60'; // Show Green
-        // If payment done, show view event
-        actionButton = `<a href="event_details.html?id=${booking.id}" style="font-size: 0.8rem; padding: 5px 10px; color: #3498db; text-decoration: none;">View Event Details</a>`;
+            // Check Status if(Confirmed)
+            if (booking.status && booking.status.includes('Confirmed')) {
+                statusColor = '#27ae60'; // Green
+                actionButton = `
+                    <a href="ticket.html?bookingId=${booking.id}" 
+                    style="display: inline-block; padding: 8px 15px; background-color: #2c3e50; color: white; text-decoration: none; border-radius: 5px; font-size: 0.85rem;">
+                    🎫 View Ticket
+                    </a>`;
     
-    } else { //pending payment, show pay
+    } else { //Show paymemt
         actionButton = `
             <a href="payment.html?bookingId=${booking.id}" class="cta-button" 
                style="font-size: 0.8rem; padding: 8px 15px; background-color: #e74c3c; display: inline-block; margin-top: 5px;">
@@ -80,7 +82,6 @@
             </a>
         `;
     }
-
     const html = `
         <div class="event-list-item" style="border-left: 5px solid ${statusColor};">
             <div style="flex-grow: 1;">

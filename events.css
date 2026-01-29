@@ -1,5 +1,6 @@
 /* Ng Kee Hang */
 
+/* event style */
 .event-list-container {
     max-width: 800px;     
     margin: 0 auto;       
@@ -99,4 +100,101 @@
     border-radius: 6px;
     margin-right: 15px;
     border: 1px solid #ddd;
+}
+
+/* ticket style */
+.ticket-container {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f4f4;
+    padding: 40px 20px;
+}
+
+.ticket-card {
+    background: white;
+    width: 100%;
+    max-width: 350px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.ticket-header {
+    background-color: #3498db;
+    color: white;
+    padding: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-bottom: 3px dashed white;
+}
+
+.ticket-body {
+    padding: 30px 20px;
+}
+
+.ticket-title {
+    color: #2c3e50;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.ticket-info {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.qr-code-box {
+    margin: 20px auto;
+    width: 150px;
+    height: 150px;
+    background-color: #ecf0f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #bdc3c7;
+    border-radius: 10px;
+}
+
+.qr-code-box img {
+    width: 130px;
+    height: 130px;
+}
+
+.ticket-footer {
+    background-color: #f9f9f9;
+    padding: 15px;
+    font-size: 0.8rem;
+    color: #95a5a6;
+    border-top: 1px solid #eee;
+}
+
+.action-buttons {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+}
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    .ticket-card, .ticket-card * {
+        visibility: visible;
+    }
+    .ticket-card {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: none;
+        border: 2px solid #000;
+    }
 }

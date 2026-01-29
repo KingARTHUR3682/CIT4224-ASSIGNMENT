@@ -101,4 +101,94 @@ const eventsData = [
                         </p>
                     `
     },
+    {
+        id: "web-dev-workshop",
+        title: "Full Stack Web Development Workshop",
+        date: "15 Feb 2026, 9:00 AM",
+        location: "FCI Lab 1, MMU Cyberjaya",
+        description: "Learn HTML, CSS, and JS from scratch. Beginners welcome!",
+        image: "https://placehold.co/600x400/3498db/ffffff?text=Coding+Workshop",
+        fullDetails: `
+                        <h3>Master the Web!</h3>
+                        <p>Join us for a comprehensive one-day workshop where you will build your first website.</p>
+                        <p><strong>What you will learn:</strong></p>
+                        <ul>
+                            <li>HTML5 Structure</li>
+                            <li>CSS3 Styling & Flexbox</li>
+                            <li>JavaScript Basics</li>
+                        </ul>
+                        <p><strong>Requirement:</strong> Please bring your own laptop.</p>
+                    `
+    },
+    {
+        id: "career-fair-2026",
+        title: "MMU Mega Career Fair 2026",
+        date: "10 March 2026, 10:00 AM - 5:00 PM",
+        location: "Grand Hall, MMU Cyberjaya",
+        description: "Meet top employers like Google, Petronas, and Maybank.",
+        image: "https://placehold.co/600x400/e74c3c/ffffff?text=Career+Fair",
+        fullDetails: `
+                        <h3>Secure Your Future Internship!</h3>
+                        <p>The biggest career fair of the year is back. Bring your resume and dress to impress.</p>
+                        <p><strong>Participating Companies:</strong></p>
+                        <ul>
+                            <li>Google Malaysia</li>
+                            <li>Petronas Digital</li>
+                            <li>Maybank Fintech</li>
+                            <li>Shopee</li>
+                        </ul>
+                    `
+    },
+    {
+        id: "esports-valorant",
+        title: "MMU Inter-Faculty Valorant Championship",
+        date: "22 April 2026, 8:00 PM",
+        location: "Online / Discord",
+        description: "Battle it out for the title of MMU Champion. RM1000 Prize Pool.",
+        image: "https://placehold.co/600x400/2c3e50/ffffff?text=E-Sports",
+        fullDetails: `
+                        <h3>Tactical Shooter Showdown</h3>
+                        <p>Gather your squad (5 players) and register now.</p>
+                        <p><strong>Prize Pool:</strong></p>
+                        <ul>
+                            <li>1st Place: RM 500</li>
+                            <li>2nd Place: RM 300</li>
+                            <li>3rd Place: RM 200</li>
+                        </ul>
+                        <p>Matches will be streamed live on Twitch.</p>
+                    `
+    },
+    {
+        id: "charity-run",
+        title: "Run for Hope: 5KM Charity Run",
+        date: "05 June 2026, 7:00 AM",
+        location: "MMU Stadium",
+        description: "Join us for a healthy run to support local orphanages.",
+        image: "https://placehold.co/600x400/27ae60/ffffff?text=Charity+Run",
+        fullDetails: `
+                        <h3>Run for a Good Cause</h3>
+                        <p>All proceeds will be donated to the Cyberjaya Orphanage Home.</p>
+                        <p><strong>Registration Fee:</strong> RM 30 (Includes T-shirt and Medal)</p>
+                        <p>Water stations will be provided at every 2KM.</p>
+                    `
+    },
+    {
+        id: "cultural-night",
+        title: "International Cultural Night 2026",
+        date: "15 July 2026, 7:30 PM",
+        location: "MMU Main Hall",
+        description: "Experience food, dance, and music from over 20 countries.",
+        image: "https://placehold.co/600x400/f39c12/ffffff?text=Cultural+Night",
+        fullDetails: `
+                        <h3>A Night of Diversity</h3>
+                        <p>Celebrating the diverse student body of MMU.</p>
+                        <p><strong>Activities:</strong></p>
+                        <ul>
+                            <li>Traditional Fashion Show</li>
+                            <li>International Food Festival</li>
+                            <li>Dance Performances</li>
+                        </ul>
+                        <p>Ticket includes food vouchers!</p>
+                    `
+    }
 ];

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Secure Payment - MMU Campus Events</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .payment-container {
+            display: flex;
+            justify-content: center;
+            padding: 50px 20px;
+            background-color: #f4f4f4;
+        }
+        .payment-card {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        .summary-box {
+            background-color: #e8f4fd;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 25px;
+        }
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        .card-icons {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="navbar-container"></div>
+
+    <section class="contact-header">
+        <h1>Secure Payment</h1>
+        <p>Complete your payment to confirm your registration.</p>
+    </section>
+
+    <div class="payment-container">
+        <div class="payment-card">
+            
+            <div class="summary-box">
+                <h3 style="margin-top: 0; color: #2c3e50;">Booking Summary</h3>
+                <p><strong>Event:</strong> <span id="event-title">Loading...</span></p>
+                <p><strong>Amount:</strong> RM 10.00 (Booking Fee)</p>
+            </div>
+
+            <div class="card-icons">
+                💳 <span style="font-size: 0.9rem; color: gray;">Credit / Debit Card</span>
+            </div>
+
+            <form onsubmit="return handlePayment(event)">
+                <div class="form-group">
+                    <label>Cardholder Name</label>
+                    <input type="text" placeholder="Name on Card" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Card Number</label>
+                    <input type="text" placeholder="0000 0000 0000 0000" maxlength="19" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group" style="flex: 1;">
+                        <label>Expiry Date</label>
+                        <input type="text" placeholder="MM/YY" maxlength="5" required>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label>CVV</label>
+                        <input type="password" placeholder="123" maxlength="3" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit" style="background-color: #27ae60;">Confirm Payment (RM 10.00)</button>
+                <a href="bookings.html" style="display: block; text-align: center; margin-top: 15px; color: #7f8c8d; text-decoration: none;">Cancel</a>
+            </form>
+        </div>
+    </div>
+
+    <div id="footer-container"></div>
+    <script src="layout.js"></script>
+
+    <script>
+        // Get booking ID
+        const params = new URLSearchParams(window.location.search);
+        const targetBookingId = params.get('bookingId');
+        
+        let currentUser = null;
+        let userBookings = [];
+        let bookingIndex = -1;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Verify User and booking information
+            const userJson = localStorage.getItem('currentUser');
+            if (!userJson) {
+                alert("Please login first.");
+                window.location.href = "login.html";
+                return;
+            }
+            currentUser = JSON.parse(userJson);
+
+            // Load data from localstorage
+            const storageKey = `bookings_${currentUser.id}`;
+            userBookings = JSON.parse(localStorage.getItem(storageKey)) || [];
+            bookingIndex = userBookings.findIndex(b => b.id === targetBookingId && !b.status.includes('Confirmed'));
+
+            if (bookingIndex !== -1) {
+                document.getElementById('event-title').innerText = userBookings[bookingIndex].title;
+            } else {
+                alert("Booking not found or already paid.");
+                window.location.href = "bookings.html";
+            }
+        });
+
+        // Make payment
+        function handlePayment(e) {
+            e.preventDefault();
+            // 模拟付款处理延迟
+            const btn = document.querySelector('.btn-submit');
+            btn.innerHTML = "Processing...";
+            btn.disabled = true;
+
+            setTimeout(() => {
+                // *** 核心：更新状态 ***
+                if (bookingIndex !== -1) {
+                    // 修改状态为 Confirmed
+                    userBookings[bookingIndex].status = "Confirmed ✅";
+                    
+                    // 保存回 LocalStorage
+                    const storageKey = `bookings_${currentUser.id}`;
+                    localStorage.setItem(storageKey, JSON.stringify(userBookings));
+
+                    alert("Payment Successful! Your registration is confirmed.");
+                    window.location.href = "bookings.html"; // 跳回列表页
+                }
+            }, 1500); // 1.5秒延迟模拟真实感
+        }
+    </script>
+</body>
+</html>

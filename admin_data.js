@@ -4,15 +4,18 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initializeData() {
-    //Initialize Events
-    if (!localStorage.getItem('storedEvents')) {
+    // Check if storedEvents is missing OR if it is an empty list
+    const stored = localStorage.getItem('storedEvents');
+    
+    if (!stored || JSON.parse(stored).length === 0) {
         if (typeof eventsData !== 'undefined') {
             localStorage.setItem('storedEvents', JSON.stringify(eventsData));
             console.log("Initialized Events Data from data.js");
+            // Optional: Reload page to reflect changes immediately if on a dashboard
         }
     }
 
-    //Initialize Users (Students/Admins)
+    // Initialize Users (Students/Admins)
     if (!localStorage.getItem('storedUsers')) {
         if (typeof authDB !== 'undefined') {
             localStorage.setItem('storedUsers', JSON.stringify(authDB));
@@ -48,4 +51,16 @@ function getAllBookings() {
         }
     }
     return allBookings;
+}
+
+//Get categories from storage or return defaults
+function getStoredCategories() {
+    const defaultCategories = ["Academic / Seminar", "Workshop", "Sports", "Cultural", "Club Activity", "Volunteer / Community", "Competition"];
+    const stored = localStorage.getItem('storedCategories');
+    return stored ? JSON.parse(stored) : defaultCategories;
+}
+
+//Save categories to storage
+function saveCategories(categoriesArray) {
+    localStorage.setItem('storedCategories', JSON.stringify(categoriesArray));
 }

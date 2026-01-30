@@ -171,7 +171,6 @@
 
             userData.students.forEach((student, index) => {
                 const memberId = "M" + (index + 1).toString().padStart(3, '0');
-                // Use stored faculty if available, otherwise default to FCI
                 const faculty = student.faculty || "FCI"; 
                 const status = "Active";
 
@@ -231,11 +230,11 @@
 
             if (student) {
                 document.getElementById('member-student-id').value = student.id;
-                document.getElementById('member-student-id').disabled = true; // Lock ID during edit
+                document.getElementById('member-student-id').disabled = true;
                 document.getElementById('member-name').value = student.name;
                 document.getElementById('member-email').value = student.email;
                 document.getElementById('member-faculty').value = student.faculty || "FCI";
-                
+        
                 document.getElementById('edit-id').value = id;
                 document.getElementById('form-title').innerText = "Edit Member";
                 window.scrollTo(0, 0);

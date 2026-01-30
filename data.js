@@ -1,8 +1,9 @@
-//Ng Kee Hang
+// Ng Kee Hang
 const eventsData = [
     {
         id: "ey-challenge",
         title: "Join the 2026 EY AI & Data Challenge",
+        category: "Competition",
         date: "20 Jan 2026 - 13 Mar 2026",
         location: "Online",
         description: "Win Up to USD 10,000! optimizing clean water supply...",
@@ -29,6 +30,7 @@ const eventsData = [
     {
         id: "konsert-heart",
         title: "KONSERT #HEART4MUHAMMAD",
+        category: "Cultural",
         date: "9 Mei 2026, 8 Malam",
         location: "Dewan Tun Canselor, MMU Cyberjaya",
         description: "Assalamualaikum semua n salam sejatera...",
@@ -72,6 +74,7 @@ const eventsData = [
     {
         id: "jda-info",
         title: "James Dyson Award (JDA) 2026 Info Session",
+        category: "Academic / Seminar",
         date: "26 January 2026, 10:00 am",
         location: "MS Teams",
         description: "You are invited to join an exciting Industrial Talk...",
@@ -104,6 +107,7 @@ const eventsData = [
     {
         id: "web-dev-workshop",
         title: "Full Stack Web Development Workshop",
+        category: "Workshop",
         date: "15 Feb 2026, 9:00 AM",
         location: "FCI Lab 1, MMU Cyberjaya",
         description: "Learn HTML, CSS, and JS from scratch. Beginners welcome!",
@@ -123,6 +127,7 @@ const eventsData = [
     {
         id: "career-fair-2026",
         title: "MMU Mega Career Fair 2026",
+        category: "Club Activity",
         date: "10 March 2026, 10:00 AM - 5:00 PM",
         location: "Grand Hall, MMU Cyberjaya",
         description: "Meet top employers like Google, Petronas, and Maybank.",
@@ -142,6 +147,7 @@ const eventsData = [
     {
         id: "esports-valorant",
         title: "MMU Inter-Faculty Valorant Championship",
+        category: "Competition",
         date: "22 April 2026, 8:00 PM",
         location: "Online / Discord",
         description: "Battle it out for the title of MMU Champion. RM1000 Prize Pool.",
@@ -161,6 +167,7 @@ const eventsData = [
     {
         id: "charity-run",
         title: "Run for Hope: 5KM Charity Run",
+        category: "Volunteer / Community",
         date: "05 June 2026, 7:00 AM",
         location: "MMU Stadium",
         description: "Join us for a healthy run to support local orphanages.",
@@ -175,6 +182,7 @@ const eventsData = [
     {
         id: "cultural-night",
         title: "International Cultural Night 2026",
+        category: "Cultural",
         date: "15 July 2026, 7:30 PM",
         location: "MMU Main Hall",
         description: "Experience food, dance, and music from over 20 countries.",

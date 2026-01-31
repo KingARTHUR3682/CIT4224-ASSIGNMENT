@@ -47,9 +47,9 @@ const eventsData = [
                         </ul>
 
                         <table border="1" style="width: 100%; font-size: 1.2rem; margin-top: 10px; border-collapse: collapse;">
-                        <tr><td>Date</td><td>26 January 2026 (Monday)</td>
-                        <tr><td>Time</td><td>10.00 a.m. - 11.00 a.m.</td>
-                        <tr><td>Venue</td><td>MS Teams</td>
+                        <tr><td>Date</td><td>26 January 2026 (Monday)</td></tr>
+                        <tr><td>Time</td><td>10.00 a.m. - 11.00 a.m.</td></tr>
+                        <tr><td>Venue</td><td>MS Teams</td></tr>
                         </table>
             
                         <p>This session will introduce the James Dyson Award 2026, a global engineering and design competition open to students and recent graduates. Join the session to learn how you can participate and showcase your ideas on an international platform.</p>
@@ -69,7 +69,7 @@ const eventsData = [
         title: "Full Stack Web Development Workshop",
         price: 0,
         category: "Workshop",
-        date: "15 Feb 2026, 9:00 AM",
+        date: "1 Dec 2025, 9:00 AM",
         location: "FCI Lab 1, MMU Cyberjaya",
         description: "Learn HTML, CSS, and JS from scratch. Beginners welcome!",
         image: "https://placehold.co/600x400/3498db/ffffff?text=Coding+Workshop",
@@ -90,7 +90,7 @@ const eventsData = [
         title: "MMU Mega Career Fair 2026",
         price: 0,
         category: "Club Activity",
-        date: "10 March 2026, 10:00 AM - 5:00 PM",
+        date: "25 Nov 2025, 10:00 AM - 5:00 PM",
         location: "Grand Hall, MMU Cyberjaya",
         description: "Meet top employers like Google, Petronas, and Maybank.",
         image: "https://placehold.co/600x400/e74c3c/ffffff?text=Career+Fair",
@@ -111,7 +111,7 @@ const eventsData = [
         title: "MMU Inter-Faculty Valorant Championship",
         price: 10,
         category: "Competition",
-        date: "22 April 2026, 8:00 PM",
+        date: "22 Nov 2025, 8:00 PM",
         location: "Online / Discord",
         description: "Battle it out for the title of MMU Champion. RM1000 Prize Pool.",
         image: "https://placehold.co/600x400/2c3e50/ffffff?text=E-Sports",
@@ -133,7 +133,7 @@ const eventsData = [
         title: "Run for Hope: 5KM Charity Run",
         price: 10,
         category: "Volunteer / Community",
-        date: "05 June 2026, 7:00 AM",
+        date: "30 Oct 2025, 7:00 AM",
         location: "MMU Stadium",
         description: "Join us for a healthy run to support local orphanages.",
         image: "https://placehold.co/600x400/27ae60/ffffff?text=Charity+Run",
@@ -149,7 +149,7 @@ const eventsData = [
         title: "International Cultural Night 2026",
         price: 10,
         category: "Cultural",
-        date: "15 July 2026, 7:30 PM",
+        date: "15 July 2025, 7:30 PM",
         location: "MMU Main Hall",
         description: "Experience food, dance, and music from over 20 countries.",
         image: "https://placehold.co/600x400/f39c12/ffffff?text=Cultural+Night",

@@ -208,7 +208,8 @@ function handleRegistration(event) {
     const newBooking = {
         id: eventId,
         title: eventName,
-        date: new Date().toLocaleDateString(),
+
+        date: new Date().toISOString().split('T')[0], 
         status: "Pending Payment Verification"
     };
 

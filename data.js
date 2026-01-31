@@ -3,6 +3,7 @@ const eventsData = [
     {
         id: "ey-challenge",
         title: "Join the 2026 EY AI & Data Challenge",
+        price: 0,
         category: "Competition",
         date: "20 Jan 2026 - 13 Mar 2026",
         location: "Online",
@@ -28,52 +29,9 @@ const eventsData = [
                     `
     },
     {
-        id: "konsert-heart",
-        title: "KONSERT #HEART4MUHAMMAD",
-        category: "Cultural",
-        date: "9 Mei 2026, 8 Malam",
-        location: "Dewan Tun Canselor, MMU Cyberjaya",
-        description: "Assalamualaikum semua n salam sejatera...",
-        image: "assets/KONSERT.jpeg",
-        fullDetails: `  <p>Assalamualaikum semua n salam sejahtera. Kami akan membawakan Konsert #Heart4Muhammad pada ketetapan berikut:-</p>
-                        <p><strong>Tarikh:</strong> 9 Mei 2026 (Sabtu)<br>
-                        <strong>Venue:</strong> Dewan Tun Canselor, MMU Cyberjaya</p>
-
-                        <h3>Senarai Harga Tiket (Ticket Prices)</h3>
-                            <table class="event-table">
-                                <thead>
-                                    <tr>
-                                        <th>Category (Taraf)</th>
-                                        <th>Price (Harga)</th>
-                                    </tr>
-                                </thead>
-
-                        <tbody>
-                            <tr>
-                                <td>Taraf 1 (Subhanallah)</td>
-                                <td>RM 99</td>
-                            </tr>
-                            <tr>
-                                <td>Taraf 2 (Taubat)</td>
-                                <td>RM 89</td>
-                            </tr>
-                            <tr>
-                                <td>Taraf 3 (Di Hening Malam)</td>
-                                <td>RM 79</td>
-                            </tr>
-                            <tr>
-                                <td>Taraf 4 (Solusi)</td>
-                                <td>RM 69</td>
-                            </tr>
-                        </tbody>
-                            </table>
-                        <br>
-                        <p><strong>Barisan Artis:</strong> Intisor, Cahaya Hati, Hasnul Diwani, Rabithah, D.O, B-Heart, Yaph.</p>
-                        <p>Dapatkan tiket anda sekarang sebelum terlambat!</p>`
-    },
-    {
         id: "jda-info",
         title: "James Dyson Award (JDA) 2026 Info Session",
+        price: 0,
         category: "Academic / Seminar",
         date: "26 January 2026, 10:00 am",
         location: "MS Teams",
@@ -107,6 +65,7 @@ const eventsData = [
     {
         id: "web-dev-workshop",
         title: "Full Stack Web Development Workshop",
+        price: 0,
         category: "Workshop",
         date: "15 Feb 2026, 9:00 AM",
         location: "FCI Lab 1, MMU Cyberjaya",
@@ -127,6 +86,7 @@ const eventsData = [
     {
         id: "career-fair-2026",
         title: "MMU Mega Career Fair 2026",
+        price: 0,
         category: "Club Activity",
         date: "10 March 2026, 10:00 AM - 5:00 PM",
         location: "Grand Hall, MMU Cyberjaya",
@@ -147,6 +107,7 @@ const eventsData = [
     {
         id: "esports-valorant",
         title: "MMU Inter-Faculty Valorant Championship",
+        price: 10,
         category: "Competition",
         date: "22 April 2026, 8:00 PM",
         location: "Online / Discord",
@@ -161,12 +122,14 @@ const eventsData = [
                             <li>2nd Place: RM 300</li>
                             <li>3rd Place: RM 200</li>
                         </ul>
+                        <p><strong>Registration Fee:</strong> RM 10</p>
                         <p>Matches will be streamed live on Twitch.</p>
                     `
     },
     {
         id: "charity-run",
         title: "Run for Hope: 5KM Charity Run",
+        price: 10,
         category: "Volunteer / Community",
         date: "05 June 2026, 7:00 AM",
         location: "MMU Stadium",
@@ -175,13 +138,14 @@ const eventsData = [
         fullDetails: `
                         <h3>Run for a Good Cause</h3>
                         <p>All proceeds will be donated to the Cyberjaya Orphanage Home.</p>
-                        <p><strong>Registration Fee:</strong> RM 30 (Includes T-shirt and Medal)</p>
+                        <p><strong>Registration Fee:</strong> RM 10 (Includes T-shirt and Medal)</p>
                         <p>Water stations will be provided at every 2KM.</p>
                     `
     },
     {
         id: "cultural-night",
         title: "International Cultural Night 2026",
+        price: 10,
         category: "Cultural",
         date: "15 July 2026, 7:30 PM",
         location: "MMU Main Hall",
@@ -196,6 +160,7 @@ const eventsData = [
                             <li>International Food Festival</li>
                             <li>Dance Performances</li>
                         </ul>
+                        <p><strong>Ticket Price:</strong> RM 10</p>
                         <p>Ticket includes food vouchers!</p>
                     `
     }

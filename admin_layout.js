@@ -25,24 +25,11 @@ const adminNavbarContent = `
                 <a href="admin_report.html">Sales Report</a>
             </div>
           </li>
+
+          <li>
+            <a href="javascript:void(0)" onclick="adminLogout()" style="color: #ff6b6b; font-weight: bold;">Logout</a>
+          </li>
         </ul>
-
-        <div class="profile-container">
-            <div class="profile-avatar" id="nav-avatar">A</div>
-            
-            <div class="profile-menu">
-                <div class="profile-header">
-                    <div class="profile-avatar" id="menu-avatar" style="margin: 0 auto 10px auto; width: 60px; height: 60px; font-size: 2rem;">A</div>
-                    <span class="profile-name" id="nav-user-name">Admin User</span>
-                    <span class="profile-email" id="nav-user-email">admin@mmu.edu.my</span>
-                </div>
-                
-                <a href="javascript:void(0)" onclick="adminLogout()" class="profile-action logout">
-                    🚪 Sign out
-                </a>
-            </div>
-        </div>
-
     </div>
   </nav>
 `;
@@ -60,25 +47,6 @@ function loadAdminLayout() {
 
   if (navContainer) navContainer.innerHTML = adminNavbarContent;
   if (footerContainer) footerContainer.innerHTML = adminFooterContent;
-  
-  // Populate User Info
-  const userJson = localStorage.getItem('currentUser');
-  if (userJson) {
-      const user = JSON.parse(userJson);
-      const firstLetter = user.name.charAt(0).toUpperCase();
-      
-      const navAvatar = document.getElementById('nav-avatar');
-      if(navAvatar) navAvatar.innerText = firstLetter;
-
-      const menuAvatar = document.getElementById('menu-avatar');
-      if(menuAvatar) menuAvatar.innerText = firstLetter;
-
-      const nameEl = document.getElementById('nav-user-name');
-      const emailEl = document.getElementById('nav-user-email');
-      
-      if(nameEl) nameEl.innerText = user.name;
-      if(emailEl) emailEl.innerText = user.email || "Staff ID: " + user.id;
-  }
 }
 
 function adminLogout() {

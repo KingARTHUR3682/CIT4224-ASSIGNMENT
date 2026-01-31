@@ -10,7 +10,18 @@ function renderEvents(filterText = '') {
         pastContainer.innerHTML = '';
         pastContainer.className = 'event-list-container';
     }
-    const filteredEvents = eventsData.filter(event => 
+
+    // --- FIX STARTS HERE ---
+    // Try to get events from Local Storage first. 
+    // If not found (null), fall back to the static 'eventsData' from data.js
+    let currentEvents = JSON.parse(localStorage.getItem('storedEvents'));
+    
+    if (!currentEvents || currentEvents.length === 0) {
+        currentEvents = eventsData; 
+    }
+    // --- FIX ENDS HERE ---
+
+    const filteredEvents = currentEvents.filter(event => 
         event.title.toLowerCase().includes(filterText.toLowerCase())
     );
 
@@ -20,6 +31,7 @@ function renderEvents(filterText = '') {
     }
 
     filteredEvents.forEach((event, index) => {
+        // ... rest of your existing code ...
         if (index < 3) { 
             const card = document.createElement('div');
             card.className = 'event-card';

@@ -46,9 +46,11 @@ const eventsData = [
                             <li><strong>Mr. Zahirul Syafiq bin Ahmad</strong>, Senior Creative Designer</li>
                         </ul>
 
-                        <p><strong>Date:</strong> 26 January 2026 (Monday)</p>
-                        <p><strong>Time:</strong> 10.00 am - 11.00 am</p>
-                        <p><strong>Venue:</strong> MS Teams</p>
+                        <table border="1" style="width: 100%; font-size: 1.2rem; margin-top: 10px; border-collapse: collapse;">
+                        <tr><td>Date</td><td>26 January 2026 (Monday)</td>
+                        <tr><td>Time</td><td>10.00 a.m. - 11.00 a.m.</td>
+                        <tr><td>Venue</td><td>MS Teams</td>
+                        </table>
             
                         <p>This session will introduce the James Dyson Award 2026, a global engineering and design competition open to students and recent graduates. Join the session to learn how you can participate and showcase your ideas on an international platform.</p>
                         <p><strong>Note:</strong> Students may join the session by scanning the QR code on the event poster. Attending students will earn <strong>0.5 iCadet Professional Development Point</strong>.</p>

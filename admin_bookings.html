@@ -113,7 +113,6 @@
         }
         .btn-delete:hover { background-color: #c0392b; }
 
-        /* --- Modal Styles --- */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -321,7 +320,7 @@
             document.getElementById('no-data-msg').style.display = count === 0 ? 'block' : 'none';
         }
 
-        // --- View Details Function ---
+        //View Details Function
         function viewBooking(userId, eventId) {
             const bookings = getCombinedData();
             const booking = bookings.find(b => b.userId === userId && b.id === eventId);
@@ -331,7 +330,7 @@
             const isConfirmed = booking.status.includes('Confirmed');
             const statusColor = isConfirmed ? '#27ae60' : '#f39c12';
             
-            // Generate Payment Info
+            //Generate Payment Info
             const paymentHtml = isConfirmed 
                 ? `<div style="color: #27ae60; font-weight: bold;">✅ Paid via Online Banking</div>
                    <div>Amount: RM 10.00</div>
@@ -391,12 +390,12 @@
             document.getElementById('booking-modal').classList.remove('active');
         }
 
-        // Close on outside click
+        //Close on outside click
         document.getElementById('booking-modal').addEventListener('click', function(e) {
             if (e.target === this) closeModal();
         });
 
-        // --- Delete Function ---
+        //Delete Function
         function deleteBooking(userId, eventId) {
             if(confirm("Are you sure you want to remove this booking record? This cannot be undone.")) {
                 const storageKey = `bookings_${userId}`;

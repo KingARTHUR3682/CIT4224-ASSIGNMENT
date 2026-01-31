@@ -1,7 +1,5 @@
 // Low Yong Lek
-// admin_layout.js
 
-// 1. Admin Navbar HTML (Structure Only)
 const adminNavbarContent = `
   <nav class="navbar" style="background-color: #2c3e50; padding: 10px 40px;"> 
     

@@ -3,7 +3,7 @@ const eventsData = [
     {
         id: "ey-challenge",
         title: "Join the 2026 EY AI & Data Challenge",
-        price: 0,
+        price: 10,
         category: "Competition",
         date: "20 Jan 2026 - 13 Mar 2026",
         location: "Online",
@@ -20,7 +20,7 @@ const eventsData = [
 
                         <h3>How to Participate:</h3>
                             <ol style="padding-left: 20px; margin-bottom: 20px;">
-                                <li><strong>Join the Challenge:</strong> Visit <a href="https://challenge.ey.com" target="_blank">challenge.ey.com</a> to register.</li>
+                                <li><strong>Join the Challenge:</strong> Click the register below and pay RM 10 registration fee to register.</li>
                                 <li><strong>Claim Cadet Points:</strong> Scan the QR code provided in the poster after submission.</li>
                                 <li><strong>Wait for Results:</strong> Winners will be announced in April 2026.</li>
                             </ol>
@@ -31,7 +31,7 @@ const eventsData = [
     {
         id: "jda-info",
         title: "James Dyson Award (JDA) 2026 Info Session",
-        price: 0,
+        price: 10,
         category: "Academic / Seminar",
         date: "26 January 2026, 10:00 am",
         location: "MS Teams",
@@ -55,6 +55,7 @@ const eventsData = [
                         <p>This session will introduce the James Dyson Award 2026, a global engineering and design competition open to students and recent graduates. Join the session to learn how you can participate and showcase your ideas on an international platform.</p>
                         <p><strong>Note:</strong> Students may join the session by scanning the QR code on the event poster. Attending students will earn <strong>0.5 iCadet Professional Development Point</strong>.</p>
                         <p>See you there!</p>
+                        <p><strong>Registration Fee:</strong> RM 10</p>
 
                         <br>
                         <p style="font-size: 0.9em; color: gray;">
@@ -67,7 +68,7 @@ const eventsData = [
     {
         id: "web-dev-workshop",
         title: "Full Stack Web Development Workshop",
-        price: 0,
+        price: 10,
         category: "Workshop",
         date: "1 Dec 2025, 9:00 AM",
         location: "FCI Lab 1, MMU Cyberjaya",
@@ -82,13 +83,14 @@ const eventsData = [
                             <li>CSS3 Styling & Flexbox</li>
                             <li>JavaScript Basics</li>
                         </ul>
+                        <p><strong>Registration Fee:</strong> RM 10</p>
                         <p><strong>Requirement:</strong> Please bring your own laptop.</p>
                     `
     },
     {
         id: "career-fair-2026",
         title: "MMU Mega Career Fair 2026",
-        price: 0,
+        price: 10,
         category: "Club Activity",
         date: "25 Nov 2025, 10:00 AM - 5:00 PM",
         location: "Grand Hall, MMU Cyberjaya",
@@ -104,6 +106,7 @@ const eventsData = [
                             <li>Maybank Fintech</li>
                             <li>Shopee</li>
                         </ul>
+                        <p><strong>Registration Fee:</strong> RM 10</p>
                     `
     },
     {

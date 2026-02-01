@@ -11,15 +11,11 @@ function renderEvents(filterText = '') {
         pastContainer.className = 'event-list-container';
     }
 
-    // --- FIX STARTS HERE ---
-    // Try to get events from Local Storage first. 
-    // If not found (null), fall back to the static 'eventsData' from data.js
+    //Load events
     let currentEvents = JSON.parse(localStorage.getItem('storedEvents'));
-    
     if (!currentEvents || currentEvents.length === 0) {
         currentEvents = eventsData; 
     }
-    // --- FIX ENDS HERE ---
 
     const filteredEvents = currentEvents.filter(event => 
         event.title.toLowerCase().includes(filterText.toLowerCase())
@@ -30,13 +26,20 @@ function renderEvents(filterText = '') {
         return; 
     }
 
-    filteredEvents.forEach((event, index) => {
-        // ... rest of your existing code ...
-        if (index < 3) { 
+    //Get current date for comparison
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); //Reset time to start of day
+
+    filteredEvents.forEach((event) => {
+
+        const eventDate = new Date(event.date);
+
+        //Check if event is in the future or today
+        if (eventDate >= today) { 
             const card = document.createElement('div');
             card.className = 'event-card';
             card.innerHTML = `
-                <img src="${event.image}" alt="${event.title}">
+                <img src="${event.image}" alt="${event.title}" onerror="this.src='assets/MMU_LOGO.png'">
                 <h3>${event.title}</h3>
                 <p>${event.description}</p>
                 <a href="event_details.html?id=${event.id}">View Details</a>
@@ -46,7 +49,7 @@ function renderEvents(filterText = '') {
             const listItem = document.createElement('div');
             listItem.className = 'event-list-item';
             listItem.innerHTML = `
-                <span class="date">${event.date.split(',')[0]}</span> 
+                <span class="date">${event.date}</span> 
                 <span class="title">${event.title}</span>
                 <a href="event_details.html?id=${event.id}">View</a>
             `;

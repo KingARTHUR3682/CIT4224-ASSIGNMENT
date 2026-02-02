@@ -5,7 +5,7 @@ const eventsData = [
         title: "Join the 2026 EY AI & Data Challenge",
         price: 10,
         category: "Competition",
-        date: "20 Jan 2026 - 13 Mar 2026",
+        date: "20 Feb 2026",
         location: "Online",
         description: "Win Up to USD 10,000! optimizing clean water supply...",
         image: "assets/EY.png",

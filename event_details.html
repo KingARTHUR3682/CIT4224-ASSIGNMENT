@@ -100,19 +100,12 @@
 
     function loadEventDetails() {
         const eventId = getEventIdFromUrl();
-        
-        // --- START OF FIX ---
-        // 1. Try to fetch the latest event list from Local Storage
         let allEvents = JSON.parse(localStorage.getItem('storedEvents'));
 
-        // 2. If Local Storage is empty or missing, fall back to the static 'eventsData'
         if (!allEvents || allEvents.length === 0) {
             allEvents = eventsData;
         }
-
-        // 3. Find the event in this dynamic list instead of the static 'eventsData'
         const event = allEvents.find(e => e.id === eventId);
-        // --- END OF FIX ---
 
         if (event) {
             document.getElementById('detail-image').src = event.image;
@@ -125,8 +118,6 @@
             if (registerBtn) registerBtn.href = `registration.html?id=${event.id}`;
             const reviewBtn = document.getElementById('write-review-btn');
             if (reviewBtn) reviewBtn.href = `comment.html?id=${event.id}`;
-            
-            // Note: Ensure comments.js functions are available or handled safely
             if (typeof renderComments === 'function') {
                 renderComments(event.id, 'comments-list');
             }

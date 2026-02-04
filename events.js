@@ -1,6 +1,18 @@
 // Ng Kee Hang
 const searchInput = document.getElementById('searchInput');
 
+function checkLoginAndRedirect(eventId) {
+    const user = localStorage.getItem('currentUser');
+    if (user) {
+        // User is logged in, proceed to details page
+        window.location.href = `event_details.html?id=${eventId}`;
+    } else {
+        // User is NOT logged in, redirect to login page
+        // Optional: You can add alert("Please login to view details.");
+        window.location.href = 'login.html';
+    }
+}
+
 function renderEvents(filterText = '') {
     const upcomingContainer = document.getElementById('events-container');
     const pastContainer = document.getElementById('past-events-container');
@@ -38,20 +50,22 @@ function renderEvents(filterText = '') {
         if (eventDate >= today) { 
             const card = document.createElement('div');
             card.className = 'event-card';
+            // [UPDATED] Changed href to javascript:void(0) and added onclick
             card.innerHTML = `
                 <img src="${event.image}" alt="${event.title}" onerror="this.src='assets/MMU_LOGO.png'">
                 <h3>${event.title}</h3>
                 <p>${event.description}</p>
-                <a href="event_details.html?id=${event.id}">View Details</a>
+                <a href="javascript:void(0)" onclick="checkLoginAndRedirect('${event.id}')">View Details</a>
             `;
             if (upcomingContainer) upcomingContainer.appendChild(card);
         } else {
             const listItem = document.createElement('div');
             listItem.className = 'event-list-item';
+            // [UPDATED] Applied the same logic to the list view for consistency
             listItem.innerHTML = `
                 <span class="date">${event.date}</span> 
                 <span class="title">${event.title}</span>
-                <a href="event_details.html?id=${event.id}">View</a>
+                <a href="javascript:void(0)" onclick="checkLoginAndRedirect('${event.id}')">View</a>
             `;
             if (pastContainer) pastContainer.appendChild(listItem);
         }
